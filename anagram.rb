@@ -11,7 +11,6 @@
 module Anagram
   @filename = 'wordlist.txt';
   @words ||= File.readlines(@filename).collect { |line| line.chomp.downcase }
-  @anagram_count = Hash.new
 
   # Set filename to be read
   def self.filename=(filename)
@@ -26,9 +25,6 @@ module Anagram
 
       # Group anagrams by sorted key
       anagrams[key] += [word]
-
-      @anagram_count[key] ||= 0
-      @anagram_count[key] += 1
       anagrams
     end
 
