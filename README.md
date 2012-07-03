@@ -5,6 +5,8 @@ Given a file containing one word per line, print out all the combinations of wor
 
 For added programming pleasure, find the longest words that are anagrams, and the set of anagrams containing the most words.
 
+The app is tested with Ruby 1.9.3-p194.
+
 Usage
 ======
 
@@ -13,7 +15,7 @@ Usage
 Testing
 ========
 
-     $ ./rspec spec.rb
+     $ ruby ./spec.rb
 
 Authors
 ========

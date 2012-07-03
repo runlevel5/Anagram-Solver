@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Given a file containing one word per line, print out all the combinations of
 # words that are anagrams; each line in the output should contain a set of
 # input words that are anagrams of each other.  No word should appear in the

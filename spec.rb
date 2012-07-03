@@ -1,46 +1,50 @@
-require 'anagram'
+require_relative './anagram'
+require 'minitest/autorun'
 
-describe "Anagram.extract_anagrams" do
-  context "given two strings that are duplicated of each other" do
-    it 'returns a hash of anagrams with value that contains no duplication' do
-      input = %w{ god god dog}
-      Anagram.extract_anagrams(input).should == {"dgo"=>["god", "dog"]}
+describe Anagram do
+  describe '.extract_anagrams' do
+    describe 'given two strings that are duplicated of each other' do
+      let(:input) { %w{ god god dog } }
+      it 'returns a hash of anagrams with value that contains no duplication' do
+        Anagram.extract_anagrams(input).must_equal({ 'dgo' => ['god', 'dog'] })
+      end
     end
-  end
 
-  context 'given a set of words' do
-    it 'returns a hash of words that is anagram of each other' do
-      input = %w{ god dog maly toro }
-      Anagram.extract_anagrams(input).should == {"dgo"=>["god", "dog"]}
+    describe 'given a set of words' do
+      let(:input) { %w{ god dog maly toro } }
+      it 'returns a hash of words that is anagram of each other' do
+        Anagram.extract_anagrams(input).must_equal({ 'dgo' => ['god', 'dog'] })
+      end
     end
-  end
 
-  context 'given one string' do
-    it 'returns a empty hash' do
-      input = %w{ god }
-      Anagram.extract_anagrams(input).should == {}
+    describe 'given one string' do
+      let(:input) { %w{ god } }
+
+      it 'returns a empty hash' do
+        Anagram.extract_anagrams(input).must_equal({})
+      end
     end
-  end
-end if Anagram.respond_to? :extract_anagrams
+  end if Anagram.respond_to? :extract_anagrams
 
+  describe '.max_anagrams_lengths' do
+    describe 'given a set of words' do
+      let(:input) { input = %w{ pares parse pears rapes reaps spare spear dog god algorithmically logarithmically } }
 
-describe "Anagram.max_anagrams_lengths" do
-  context "given a set of words" do
-    it 'returns an array with first element is the char length and second is is array of the longest anagrams' do
-      input = %w{ pares parse pears rapes reaps spare spear dog god algorithmically logarithmically }
-      Anagram.extract_anagrams(input)
-      Anagram.max_anagrams_lengths.should == ["aacghiilllmorty", ["algorithmically", "logarithmically"]]
+      it 'returns an array with first element is the char length and second is is array of the longest anagrams' do
+        Anagram.extract_anagrams(input)
+        Anagram.max_anagrams_lengths.must_equal ['aacghiilllmorty', ['algorithmically', 'logarithmically']]
+      end
     end
-  end
-end if Anagram.respond_to? :max_anagrams_lengths
+  end if Anagram.respond_to? :max_anagrams_lengths
 
+  describe '.max_anagrams_count' do
+    describe 'given a set of words' do
+      let(:input) { %w{ pares parse pears rapes reaps spare spear dog god } }
 
-describe "Anagram.max_anagrams_count" do
-  context "given a set of words" do
-    it 'returns the anagram set that has most words' do
-      input = %w{ pares parse pears rapes reaps spare spear dog god }
-      Anagram.extract_anagrams(input)
-      Anagram.max_anagrams_count.should == ["aeprs", ["pares", "parse", "pears", "rapes", "reaps", "spare", "spear"]]
+      it 'returns the anagram set that has most words' do
+        Anagram.extract_anagrams(input)
+        Anagram.max_anagrams_count.must_equal ['aeprs', ['pares', 'parse', 'pears', 'rapes', 'reaps', 'spare', 'spear']]
+      end
     end
-  end
-end if Anagram.respond_to? :max_anagrams_count
+  end if Anagram.respond_to? :max_anagrams_count
+end
