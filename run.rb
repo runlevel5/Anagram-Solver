@@ -12,7 +12,7 @@ if ARGV.size == 1
     anagram_set.each do |key, words|
       output = ''
       words.each do |word|
-        output += word + " "
+        output += word + ' '
       end
       output += "\n"
       puts output
